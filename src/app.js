@@ -7,16 +7,14 @@ const items = require("./items");
 client.on("ready", () => {
   console.log(`logged in as ${client.user.tag}`);
   client.user.setStatus("online");
-  client.user.setPresence({
-    status: "idle",
-    activity: {
-      name: "events",
-      type: "WATCHING",
-    },
-  });
+  // client.user.setPresence({
+  //   status: "idle",
+  //   activity: {
+  //     name: "events",
+  //     type: "WATCHING",
+  //   },
+  // });
 });
-
-console.log(items.length);
 
 let oldDate = new Date(Date.now()).getDate();
 
@@ -27,9 +25,10 @@ client.on("message", async () => {
 
   try {
     const currentDate = new Date(Date.now()).getDate();
+
     if (oldDate !== currentDate) {
       await webhook.send(
-        `<@&${config.role}>, **Today's daily fetchur item is**:  ${items[currentDate].item}`,
+        `**Today's daily Fetchur item is**: ${items[currentDate].item}. ||<@&${config.role}>||`,
         {
           username: "Daily Fetchur Item",
           avatarURL: items[currentDate].image,
@@ -42,9 +41,5 @@ client.on("message", async () => {
     console.log(e);
   }
 });
-
-// setInterval(() => {
-//    sendEvent();
-// }, 2000);
 
 client.login(config.token);
