@@ -6,14 +6,6 @@ const items = require("./items");
 
 client.on("ready", () => {
   console.log(`logged in as ${client.user.tag}`);
-  client.user.setStatus("online");
-  // client.user.setPresence({
-  //   status: "idle",
-  //   activity: {
-  //     name: "events",
-  //     type: "WATCHING",
-  //   },
-  // });
 });
 
 let oldDate = new Date(Date.now()).getDate();
